@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Botton Ripple Effect Test</title>
+</head>
+
+<body>
+    <style>
+    .landing-form {
+        position: relative;
+        width: 501px;
+        height: 433px;
+        background-color: #147be0;
+        box-shadow: 1.5px 2.6px 10px rgba(0, 0, 0, 0.35);
+    }
+    .btn {
+        position: absolute;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 2px;
+        width: 245px;
+        height: 60px;
+        background-color: #b8087f;
+        box-shadow: -0.3px 5px 6px rgba(53, 43, 1, 0.65);
+        text-shadow: 0.5px 0.9px 0 rgba(0, 0, 0, 0.3);
+        color: #fffefe;
+        font-family: "Ubuntu Condensed";
+        font-size: 30px;
+        font-weight: 400;
+        text-transform: uppercase;
+        bottom: 0;
+        left: 0;
+        transform: translate(50%, 50%);
+    }
+    
+    .ripple {
+        overflow: hidden;
+    }
+    
+    .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background: #f742bc;
+        animation: ripple-animation 2s;
+    }
+    
+    @keyframes ripple-animation {
+        from {
+            transform: scale(1);
+            opacity: 0.4;
+        }
+        to {
+            transform: scale(100);
+            opacity: 0;
+        }
+    }
+    
+    
+    </style>
+    <form class="landing-form">
+        <!-- ########## identification formulaire ########## -->
+        <input type="hidden" name="source" value="voyance-gratuite-16" />
+        <input type="hidden" name="method" value="%METHOD%" />
+        <input type="hidden" name="dri" value="http://www.myastro.fr/voyance-gratuite-16-tel" />
+        <input type="hidden" name="support" value="%SUPPORT%" />
+        <input type="hidden" name="affiliation" value="%AFFILIATION%" />
+        <input type="hidden" name="redirect_method" value="reload_form" />
+        <!-- #### POUR 2E ETAPE INTEGREE #### -->
+        <!-- ########## autres champs pré-remplis ########## -->
+        <input type="hidden" name="gclid" value="<?php echo $_GET['gclid']; ?>" />
+        <!-- #### POUR AFFILIATION ADWORDS #### -->
+        <input type="hidden" name="cguv" value="1" />
+        <input type="hidden" name="partenaires" value="1" />
+        <!-- ############################################### -->
+        <?php // modèles et contenus de base des champs ?>
+        <!-- Prénom -->
+        <label for="prenom">Prénom</label>
+        <input name="prenom" id="prenom" type="text" required />
+        <!-- Genre -->
+        <label for="gender-f">
+            <img src="images_landing/..." alt="♀"> Femme
+            <input type="radio" name="sexe" id="gender-f" value="F" required />
+        </label>
+        <label class="" for="gender-h">
+            <img src="images_landing/..." alt="♂"> Homme
+            <input type="radio" name="sexe" id="gender-h" value="M" />
+        </label>
+        <!-- Date de naissance -->
+        <select name="jour">
+            <option value="" disabled selected>Jour</option>
+            <?php for($i=1;$i<=31;$i++){ ?>
+            <option value="<?= $i ?>">
+                <?= sprintf('%02d', $i) ?>
+            </option>
+            <?php } ?>
+        </select>
+        <select name="mois">
+            <option value="" disabled selected>Mois</option>
+            <option value="01">Janvier</option>
+            <option value="02">Février</option>
+            <option value="03">Mars</option>
+            <option value="04">Avril</option>
+            <option value="05">Mai</option>
+            <option value="06">Juin</option>
+            <option value="07">Juillet</option>
+            <option value="08">Août</option>
+            <option value="09">Septembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Décembre</option>
+        </select>
+        <select name="annee">
+            <option value="" disabled selected>Année</option>
+            <?php for($i=date('Y')-18;$i>=1900;$i--){ ?>
+            <option value="<?= $i ?>">
+                <?= $i ?>
+            </option>
+            <?php } ?>
+        </select>
+        <!-- Question générales -->
+        <select name="theme_id" id="theme_id" required>
+            <option value="" diabled selected="selected">Thème de la question</option>
+            <optgroup label="Amour">
+                <option value="question_1">Quand vais-je rencontrer l’amour ?</option>
+                <option value="question_2">Quels sont ses sentiments pour moi ?</option>
+                <option value="question_24">Mes sentiments sont confus, que dois-je faire ?</option>
+                <option value="question_11">Ai-je encore un avenir avec lui/elle ?</option>
+            </optgroup>
+            <optgroup label="Argent">
+                <option value="question_73">Vais-je gagner de l’argent ?</option>
+            </optgroup>
+            <optgroup label="Travail">
+                <option value="question_4">Quel sera mon avenir professionnel ?</option>
+                <option value="question_3">Quand vais-je trouver du travail ?</option>
+            </optgroup>
+        </select>
+        <!-- Question amour -->
+        <input type="radio" name="theme_id" id="q-couple" value="question_2" required />
+        <label for="q-couple">En couple</label>
+        <input type="radio" name="theme_id" id="q-separes" value="question_11" />
+        <label for="q-separes">Séparés</label>
+        <input type="radio" name="theme_id" id="q-amants" value="question_24" />
+        <label for="q-amants">Amants</label>
+        <!-- Conjoint -->
+        <div class="js-sonprenom" style="display: none">
+            <label for="son_prenom">Son prénom</label>
+            <input type="text" id="son_prenom" name="conjoint" />
+        </div>
+        <!-- Date de naissance Conjoint -->
+        <select name="jour-c">
+            <option value="" disabled selected>Jour</option>
+            <?php for($i=1;$i<=31;$i++){ ?>
+            <option value="<?= $i ?>">
+                <?= sprintf('%02d', $i) ?>
+            </option>
+            <?php } ?>
+        </select>
+        <select name="mois-c">
+            <option value="" disabled selected>Mois</option>
+            <option value="01">Janvier</option>
+            <option value="02">Février</option>
+            <option value="03">Mars</option>
+            <option value="04">Avril</option>
+            <option value="05">Mai</option>
+            <option value="06">Juin</option>
+            <option value="07">Juillet</option>
+            <option value="08">Août</option>
+            <option value="09">Septembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Décembre</option>
+        </select>
+        <select name="annee-c">
+            <option value="" disabled selected>Année</option>
+            <?php for($i=date('Y')-18;$i>=1900;$i--){ ?>
+            <option value="<?= $i ?>">
+                <?= $i ?>
+            </option>
+            <?php } ?>
+        </select>
+        <!-- Email -->
+        <label for="email">E-mail</label>
+        <input name="email" id="email" type="email" required />
+        <!-- Détail de la question -->
+        <textarea name="question" cols="30" rows="4" placeholder="Écrivez votre question, pour plus de confidentialité, ne citez aucun nom ici."></textarea>
+        <!-- Téléphone -->
+        <label for="tel">Téléphone</label>
+        <input name="tel" id="tel" type="text" required />
+        <!-- Pays -->
+        <label for="pays">Pays</label>
+        <select name="pays" id="pays" required>
+            <option value="BE">Belgique</option>
+            <option value="CA">Canada</option>
+            <option value="LU">Luxembourg</option>
+            <option value="CH">Suisse</option>
+            <option value="FR" selected>France Métropolitaine</option>
+            <optgroup label="DOM-TOM">
+                <option value="MQ">Martinique</option>
+                <option value="GP">Guadeloupe</option>
+                <option value="GF">Guyane</option>
+                <option value="RE">La Réunion</option>
+                <option value="YT">Mayotte</option>
+                <option value="PM">St Pierre et Miquelon</option>
+                <option value="BL">St Barthélémy</option>
+                <option value="SM">St Martin</option>
+                <option value="WF">Wallis et Futunua</option>
+                <option value="PF">Polynésie Française</option>
+                <option value="NC">Nouvelle Calédonie</option>
+            </optgroup>
+            <option value="ZZ">Autre</option>
+        </select>
+        <!-- Détail de la question -->
+        <textarea name="question" rows="5" cols="40" placeholder="Écrivez ici votre question avec le plus de détails possible. Pour plus de confidentialité, ne citez aucun nom."></textarea>
+        <!-- ### BOUTON SUBMIT -->
+        <button type="submit" name="valider" class="btn ripple">je veux savoir</button>
+    </form>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    (function(window, $) {
+
+        $(function() {
+
+
+            $('.ripple').on('click', function(event) {
+                event.preventDefault();
+
+                var $div = $('<div/>'),
+                    btnOffset = $(this).offset(),
+                    xPos = event.pageX - btnOffset.left,
+                    yPos = event.pageY - btnOffset.top;
+
+
+
+                $div.addClass('ripple-effect');
+                var $ripple = $(".ripple-effect");
+
+                $ripple.css("height", $(this).height());
+                $ripple.css("width", $(this).height());
+                $div
+                    .css({
+                        top: yPos - ($ripple.height() / 2),
+                        left: xPos - ($ripple.width() / 2),
+                        background: $(this).data("ripple-color")
+                    })
+                    .appendTo($(this));
+
+                window.setTimeout(function() {
+                    $div.remove();
+                }, 2000);
+            });
+
+        });
+
+    })(window, jQuery);
+    </script>
+</body>
+
+</html>

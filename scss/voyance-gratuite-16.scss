@@ -1,0 +1,267 @@
+/* 
+    --------------------------
+    --    voyance-gratuite-16    --
+    --------------------------
+
+    Created on : 28 avril 2016
+    Author     : Moughamir <moughamir@gmail.com>
+*/
+
+@import "config";
+@import "knacss/knacss";
+@import "mainStyle";
+
+/* Palette */
+
+$bg: #000916;
+$darkpurple: #04001F;
+$bg-blue: rgba(31, 77, 112, 0.2);
+$bg-darkblue: #001220;
+$darkblue: #050120;
+$pink: #F3AAB4;
+$pink-transparent: rgba(243, 170, 180, 0.54);
+$cyan: #3BDBE6;
+$btn-cyan: #20BDCF;
+$woman: $pink;
+$men: $cyan;
+html {
+    height: 100%;
+}
+
+body {
+    padding-top: 1rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    color: white;
+    background: $bg url($img_dir+"bg.jpg") no-repeat center top fixed;
+    background-size: cover;
+}
+
+.SiteLogo {
+    background: url($img_dir+"logo-myastro.png") 2rem no-repeat;
+    background-size: contain;
+    height: 107px;
+    width: 100%;
+}
+
+.DescText-Title {
+    background: url($img_dir+"title.png") no-repeat;
+    background-size: contain;
+    height: 292px;
+    margin-bottom: 0;
+    &-Legend {
+        padding-top: 0;
+        background-color: transparent;
+        text-align: right;
+        font-size: 1.9rem;
+    }
+}
+
+.DescText-Content {
+    background: transparent;
+}
+
+.FormContainer {
+    background-color: $seco;
+    &-Header {
+        font-family: 'Ubuntu Condensed';
+        font-size: 24px;
+        font-weight: 400;
+        color: #b8087f;
+        padding-bottom: 3rem;
+        background: url($img_dir+"fleche.png") no-repeat bottom center;
+    }
+    &-btn {
+        position: absolute;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 2px;
+        width: 245px;
+        height: 60px;
+        background-color: $prim;
+        box-shadow: -0.1px 3px 3px rgba(53, 43, 1, 0.65);
+        text-shadow: 0.5px 0.9px 0 rgba(0, 0, 0, 0.3);
+        color: #fffefe;
+        font-family: "Ubuntu Condensed";
+        font-size: 2.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        bottom: 0;
+        left: 0;
+        transform: translate(50%, 50%);
+        &:hover {
+            box-shadow: -0.3px 5px 6px rgba(53, 43, 1, 0.65);
+        }
+    }
+    &.DRI .DRI {
+        &-Intro {
+            background-color: $pink-transparent;
+            font-family: 'Ubuntu Condensed', sans-serif;
+            &-Title {
+                color: $darkpurple;
+                text-transform: uppercase;
+            }
+            &-Text {
+                color: white;
+            }
+        }
+        &-Slogan {
+            background-color: $cyan;
+            font-family: 'Ubuntu Condensed', sans-serif;
+            color: $darkblue;
+            text-transform: uppercase;
+        }
+        &-Form {
+            padding: 2rem;
+            background-color: $bg-darkblue;
+            .FormField-Input {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+        }
+        &-Sent {
+            font-family: 'Ubuntu Condensed', sans-serif;
+            strong {
+                font-weight: normal;
+                color: $cyan;
+            }
+        }
+    }
+}
+
+.FormField-Label {
+    text-transform: uppercase;
+    .ico-woman {
+        font-size: 1.9rem;
+        font-weight: bold;
+        color: $woman;
+    }
+    .ico-man {
+        font-size: 1.9rem;
+        font-weight: bold;
+        color: $men;
+    }
+}
+
+.FormField-Input {
+    border: none;
+    &:not([type=radio]):focus,
+    &:not([type=radio]):focus:invalid {
+        outline-width: 0;
+        box-shadow: 0 0 6px -1px $darkblue;
+        border-color: transparent;
+    }
+}
+
+.FormField-Info {
+    border: none;
+    color: $darkblue;
+    box-shadow: 0 0 6px -1px $darkblue;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.How-header {
+    font-weight: normal;
+    font-size: 2.4rem;
+    font-family: inherit;
+}
+
+.How-Wizard {
+    border-color: $darkblue;
+    color: $darkblue;
+    &Item-Img.form {
+        background: transparent url($img_dir+"how-ico-form.png") center no-repeat;
+        background-size: contain;
+    }
+    &Item-Img.phone {
+        background: transparent url($img_dir+"how-ico-phone.png") center no-repeat;
+        background-size: contain;
+    }
+}
+
+.ReassuranceList {
+    width: 100%;
+    height: 44px;
+    background-color: #fefefe;
+    background-image: linear-gradient(to top, rgba(224, 220, 220, 0.17) 0%, rgba(255, 255, 255, 0.17) 100%);
+    box-shadow: 1.5px 2.6px 10px rgba(0, 0, 0, 0.35);
+    color: #b8087f;
+    font-family: $opensans;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.ReassuranceList-Item-Img.star {
+    background: transparent url($img_dir+"icon-star.png") center no-repeat;
+    background-size: contain;
+}
+.ReassuranceList-Item-Img.chat {
+    background: transparent url($img_dir+"icon-chat.png") center no-repeat;
+    background-size: contain;
+}
+
+.ReassuranceList-Item-Img.lock {
+    background: transparent url($img_dir+"icon-lock.png") center no-repeat;
+    background-size: contain;
+}
+
+.ReassuranceList-Item-Img.secure {
+    background: transparent url($img_dir+"icon-secure.png") center no-repeat;
+    background-size: contain;
+}
+
+.ReassuranceList-Item-Img.trophy {
+    background: transparent url($img_dir+"icon-trophy.png") center no-repeat;
+    background-size: contain;
+}
+
+.alert {
+    border-radius: 5px;
+    &-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+    &-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    &-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+    &-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .DescText {
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .SiteLogo,
+    .DescText-Title {
+        background-position: center;
+    }
+    .DescText-Title {
+        height: 240px;
+    }
+}
+
+@if $effects == true{
+  @import "addons/animation";
+}
